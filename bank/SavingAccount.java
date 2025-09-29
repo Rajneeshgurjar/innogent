@@ -20,3 +20,8 @@ SavingtAccount(double balance){
 		
 	}
 }
+
+//Liskov Substitution Principle (LSP)
+class SavingAccountLoan extends SavingAccount implements Loan{
+	
+}
