@@ -1,5 +1,5 @@
 import java.util.*;
-class Employee{
+class Employee implements Comparable{
 	int id;
 	String name;
 	String department;
@@ -24,6 +24,22 @@ class Employee{
 		return salary;
 	}
 	
+	
+	public int compareTo(Object o){
+		Employee emp=(Employee)o;
+		
+		int dept=department.compareTo(emp.getDepartment());
+		if(dept != 0 )return dept;
+		
+		int nam=name.compareTo(emp.getName());
+		if(dept != 0 )return nam;
+		
+		int sal=Double.compare(emp.getSalary(),salary);
+		if(sal != 0)return sal;
+		
+		return 0;
+		
+	}
 	
 	public String toString(){
 	return "[ id = "+id+", name = "+name+", department = "+department+", salary ="+ salary+" ]";
@@ -56,7 +72,15 @@ class EmployeeSort{
 			employeeList(employees);
 			System.out.println("-------------------------------------");
 		
-			System.out.println("List of Employee after sorting =>>\n");
+			System.out.println("List of Employee after sorting with Comparator =>>\n");
+			Collections.sort(employees);
+			employeeList(employees);
+			
+			
+			
+			
+			System.out.println("-------------------------------------");
+			System.out.println("List of Employee after sorting with Comparator =>>\n");
 			employees.sort(
 				Comparator.comparing(Employee::getDepartment)   // department ascending
                       .thenComparing(Employee::getName)    // name ascending
